@@ -1,12 +1,10 @@
 Feature: 测试 
 Scenario: httpget request 
-	When 发送带如下参数的get请求到api"/query" 
-		|   type   |ems     |
-		| postid  | 123243     |
-		
-		#	Then  返回状态码为"200" 
-		#	And   返回参数满足如下 
-		#		|jsonpath |value |
-		#		|name     |1     |
-		#		|id       |111   |
-		#	And 将请求结果"Key"的缓存到"#{key}"
+	When 发送带如下参数的get请求到api"/open/api/weather/json.shtml" 
+		|   city   |北京    |		
+	Then 请求返回的状态码为 "200" 
+	And  请求返回数据满足如下要求 
+		|jsonPath |expectedValue |
+		|date     |20180703    |
+		|city     |北京                    |
+	And 将请求返回数据中的"data.quality"缓存到"#{mykey}"
