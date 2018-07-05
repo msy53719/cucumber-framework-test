@@ -1,8 +1,19 @@
 version: "3.3"
 services: 
-   redis-server: 
-      image: redis:latest
-      container_name: redis
-      ports: 
-        - 6379:6379
+  mysql.db.server:
+    image: mysql:5.7
+    container_name: mysql.db.server
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    tmpfs:
+      - /mysql/tmp/
+    volumes:
+      - D:\data\musql\data:/var/lib/mysql
+    ports:
+      - 3306:3306
       
+  redis-server: 
+    image: redis:latest
+    container_name: redis
+    ports: 
+      - 6379:6379
