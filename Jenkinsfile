@@ -1,9 +1,6 @@
 pipeline {
     agent any   
     stages {
-        script {
-             System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox; default-src 'self';")
-            }
     
         stage('Checkout') {
             steps {
@@ -12,6 +9,9 @@ pipeline {
                 step([$class: 'WsCleanup'])
                 git url: 'https://github.com/msy53719/cucumber-framework-test.git', branch: 'master'
                 echo 'get artifact from pulugins  pipeline.'
+              script {
+             System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox; default-src 'self';")
+            }
             }
         }
         
