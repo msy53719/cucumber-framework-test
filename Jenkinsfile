@@ -41,7 +41,41 @@ pipeline {
             echo 'package report'
             sh 'sh ./script/report.sh'
             archiveArtifacts artifacts: 'test-report*.tar.gz', fingerprint: true
-            mail bcc: '', body: '${SCRIPT, template="groovy-html.template"}', cc: '479979298@qq.com', from: 'tianjiao223@sina.cn', replyTo: '', subject: '测试报告', to: '479979298@qq.com'
+            emailext attachLog: true, body: '''<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="UTF-8">  
+<title>${ENV, var="JOB_NAME"}-第${BUILD_NUMBER}次构建日志</title>  
+</head>  
+
+<body leftmargin="8" marginwidth="0" topmargin="8" marginheight="4"  
+    offset="0">  
+    <div>
+    <table width="95%" cellpadding="0" cellspacing="0" 
+        style="font-size: 11pt; font-family: Tahoma, Arial, Helvetica, sans-serif"> 
+
+        <tr>
+            <th align="center" colspan="2"><br />
+                <h2>构建信息</h2> 
+            </th>
+        </tr>
+        <tr>  
+            <td>  
+                <ul>  
+                    <li>项目名称 ： ${PROJECT_NAME}</li><br />  
+                    <li>详细测试报告 ： <a href="${PROJECT_URL}测试报告">${PROJECT_URL}测试报告</a></li><br />
+                    <li>触发原因： ${CAUSE}</li><br />                    
+                    <li>项目  Url ： <a href="${PROJECT_URL}">${PROJECT_URL}</a></li><br />
+                </ul>  
+            </td> 
+        </tr>  
+    </table> 
+    </div>
+
+  </body>  
+</html>''', compressLog: true, mimeType: 'html(text/html)', subject: '测试报告', to: '479979298@qq.com'
+            
+            mail bcc: '', body: '<body><a href></body>', cc: '479979298@qq.com', from: 'tianjiao223@sina.cn', replyTo: '', subject: '测试报告', to: '479979298@qq.com'
             
         }
         failure {
