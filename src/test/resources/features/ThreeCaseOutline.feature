@@ -7,7 +7,7 @@ Feature: 测试
 		|jsonPath |expectedValue |
 		|date     |<date>        |
 		|city     |<city>        |
-	And 将请求返回数据中的"data.quality"缓存到"#{mykey}" 
+	#And 将请求返回数据中的"data.quality"缓存到"#{mykey}" 
 
 	Examples: 测试
 		|  data    |city   |

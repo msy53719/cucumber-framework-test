@@ -7,4 +7,4 @@ Scenario: httpget request
 		|jsonPath |expectedValue |
 		|date     |20180703    |
 		|city     |上海                    |
-	And 将请求返回数据中的"data.quality"缓存到"#{mykey}"
+	#And 将请求返回数据中的"data.quality"缓存到"#{mykey}"
