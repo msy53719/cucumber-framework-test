@@ -41,6 +41,8 @@ pipeline {
             echo 'package report'
             sh 'sh ./script/report.sh'
             archiveArtifacts artifacts: 'test-report*.tar.gz', fingerprint: true
+            mail bcc: '', body: '${SCRIPT, template="groovy-html.template"}', cc: '479979298@qq.com', from: 'tianjiao223@sina.cn', replyTo: '', subject: '测试报告', to: '479979298@qq.com'
+            
         }
         failure {
             echo 'this area is run when failure'
