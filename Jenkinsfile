@@ -9,9 +9,6 @@ pipeline {
                 step([$class: 'WsCleanup'])
                 git url: 'https://github.com/msy53719/cucumber-framework-test.git', branch: 'master'
                 echo 'get artifact from pulugins  pipeline.'
-              script {
-             System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox; default-src 'self';")
-            }
             }
         }
         
@@ -25,7 +22,7 @@ pipeline {
         
           stage('send report') {
             steps {
-             mail bcc: '', body: '<body ${FILE, path="./test_report/Test.html"} </body>', cc: '479979298@qq.com', from: 'tianjiao223@sina.cn', replyTo: '', subject: '测试报告', to: '479979298@qq.com'
+             mail bcc: '', body: '${SCRIPT, template="groovy-html.template"}', cc: '479979298@qq.com', from: 'tianjiao223@sina.cn', replyTo: '', subject: '测试报告', to: '479979298@qq.com'
             }            
         }
     }
