@@ -41,10 +41,8 @@ pipeline {
             echo 'package report'
             sh 'sh ./script/report.sh'
             archiveArtifacts artifacts: 'test-report*.tar.gz', fingerprint: true
-            emailext attachLog: true, body: '${BUILD_URL}/Html_20Report/index.html', compressLog: true, subject: '测试报告地址', to: '479979298@qq.com'
-            
-            mail bcc: '', body: '${BUILD_URL}/Html_20Report/index.html', cc: '479979298@qq.com', from: 'tianjiao223@sina.cn', replyTo: '', subject: '测试报告', to: '479979298@qq.com'
-            
+            emailext attachLog: true, body: '测试报告地址：\n  ${BUILD_URL}/Html_20Report/index.html', compressLog: true, subject: '测试报告地址', to: '479979298@qq.com'
+                 
         }
         failure {
             echo 'this area is run when failure'
