@@ -26,9 +26,10 @@ pipeline {
         }
     }
     post {
-       success {
-          // publish html
-          publishHTML target: [
+   
+        always {
+        
+         publishHTML target: [
               allowMissing: false,
               alwaysLinkToLastBuild: false,
               keepAll: true,
@@ -36,18 +37,9 @@ pipeline {
               reportFiles: 'index.html',
               reportName: 'Html Report'
             ]
-        }
-    
-        always {
             echo 'package report'
             sh 'sh ./script/report.sh'
             archiveArtifacts artifacts: 'test-report*.tar.gz', fingerprint: true
-             emailext (
-              subject: "Test report: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-              to: "479979298@qq.com",
-              body: """<p>Success: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-                <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-              recipientProviders: [[$class: 'DevelopersRecipientProvider']])
         }
         failure {
             echo 'this area is run when failure'
