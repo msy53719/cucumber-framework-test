@@ -1,6 +1,10 @@
 pipeline {
     agent any   
     stages {
+        script {
+             System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox; default-src 'self';")
+            }
+    
         stage('Checkout') {
             steps {
                 echo "Start checkout project"
