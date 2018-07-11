@@ -19,12 +19,6 @@ pipeline {
                 sh 'sh ./script/execute_test.sh'
             }
         }
-        
-          stage('send report') {
-            steps {
-             mail bcc: '', body: '${SCRIPT, template="groovy-html.template"}', cc: '479979298@qq.com', from: 'tianjiao223@sina.cn', replyTo: '', subject: '测试报告', to: '479979298@qq.com'
-            }            
-        }
     }
     post {
    
