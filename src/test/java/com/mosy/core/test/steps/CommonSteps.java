@@ -17,6 +17,8 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.junit.Assert.assertThat;  
 
 public class CommonSteps {
 
@@ -66,6 +68,11 @@ public class CommonSteps {
 		RedisUtil.getJedis().set(str, jsonpath.get(jpath));
 		logger.debug("取出缓存key的值为 ：{}", RedisUtil.getJedis().get(str));
 
+	}
+	
+	@And("^返回的数据格式符合\"(\\S*)\"$")
+	public void resDataJsonLayout(String jsonLayout) {
+		 assertThat(response.getBody().prettyPrint(), matchesJsonSchemaInClasspath(jsonLayout));
 	}
 
 }

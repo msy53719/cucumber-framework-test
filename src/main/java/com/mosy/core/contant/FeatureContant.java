@@ -1,7 +1,7 @@
 package com.mosy.core.contant;
 
 public class FeatureContant {
-	public static final String RESPONSEDATAKEY = "jsonPath";
-	public static final String EXPECTEDVALUE = "expectedValue";
+	public static final String RESPONSEDATAKEY = "JsonPath";
+	public static final String EXPECTEDVALUE = "ExpectedValue";
 
 }

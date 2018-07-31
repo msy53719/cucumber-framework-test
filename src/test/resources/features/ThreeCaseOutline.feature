@@ -4,7 +4,7 @@ Feature: 测试
 		|   city   |北京    |		
 	Then 请求返回的状态码为 "200" 
 	And  请求返回数据满足如下要求 
-		|jsonPath |expectedValue |
+		|JsonPath |ExpectedValue |
 		|date     |<date>        |
 		|city     |<city>        |
 	#And 将请求返回数据中的"data.quality"缓存到"#{mykey}" 
