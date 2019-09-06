@@ -2,9 +2,7 @@ package com.mosy.core.test.util;
 
 import java.util.Map;
 import java.util.Map.Entry;
-
 import org.junit.Assert;
-
 import io.restassured.path.json.JsonPath;
 
 public class AssertUtil {
